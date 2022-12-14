@@ -1,4 +1,5 @@
 ﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+#SingleInstance Force
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -31,7 +32,7 @@ Gui, Add, Checkbox, Checked x1120 y30 w100 h25 vOpt6, mit Loginbonus
 
 Gui, Add, Button, x1310 y10 w100 h50 gLabby, Labby Loop 1 Fenster
 
-Gui, Show, x100 y940 w1800 h80, LM Steuerung
+Gui, Show, x100 y940 w1800 h80, LM_Steuerung
 Return
 
 ; Schiffshandel, Schiff muss geöffnet sein. Für 6 Fenster
@@ -467,6 +468,16 @@ CoordMode, Mouse, Screen
 MouseMove, 313, 203
 
 ; Klicke die 5 Fenster durch mit höhere sleep
+if WinExist("BlueStacks 1")
+	WinActivate ; use the window found above
+
+else
+	Exit
+
+sleep, 5000
+MouseClick left
+sleep, 5000
+
 if WinExist("BlueStacks 2")
 	WinActivate ; use the window found above
 
@@ -722,7 +733,16 @@ else
 Return
 
 
-g_6klicks:
+g_6klicks: ; Mittlerweile 7 klicks
+
+if WinExist("BlueStacks 1")
+	WinActivate ; use the window found above
+
+else
+	Exit
+
+sleep, 50
+MouseClick left
 
 if WinExist("BlueStacks 7")
 	WinActivate ; use the window found above
@@ -779,7 +799,7 @@ sleep, 50
 MouseClick left
 
 
-if WinExist("BlueStacks 2")
+if WinExist("BlueStacks 1")
 	WinActivate ; use the window found above
 
 else
